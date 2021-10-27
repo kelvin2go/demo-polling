@@ -1,5 +1,6 @@
 import PollList from './views/PollList.vue';
 import PollDetail from './views/PollDetail.vue';
+import News from './views/News.vue';
 import About from './views/About.vue';
 import NotFound from './views/NotFound.vue';
 
@@ -7,6 +8,16 @@ import NotFound from './views/NotFound.vue';
 export const routes = [
   { path: '/', component: PollList, meta: { title: 'Poll list' } },
   { path: '/poll/:id', component: PollDetail, meta: { title: 'Poll detail' } },
+  {
+    path: '/search',
+    component: News,
+    meta: { title: 'Search News' },
+  },
+  {
+    path: '/search/:keyword/:topic',
+    component: News,
+    meta: { title: 'Search News' },
+  },
   {
     path: '/about',
     meta: { title: 'About' },

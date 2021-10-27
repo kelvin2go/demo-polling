@@ -1,10 +1,19 @@
 import { createStore } from 'vuex';
 import poll from './poll.json';
+import axios from 'axios';
+const API_BASE = 'http://localhost:3001';
+
+const SCMPAPI = axios.create({
+  baseURL: API_BASE,
+  timeout: 1000,
+});
 export default createStore({
   state() {
     return {
       count: 0,
       polls: [],
+      news: [],
+      topics: [],
     };
   },
   mutations: {
@@ -41,6 +50,12 @@ export default createStore({
       console.log(poll);
       state.polls[votedPollIndex] = poll;
     },
+    setTopics(state, result) {
+      state.topics = result;
+    },
+    setNews(state, result) {
+      state.news = result;
+    },
   },
   actions: {
     increment(context) {
@@ -52,6 +67,15 @@ export default createStore({
     },
     addVote(context, params) {
       context.commit('addVote', params);
+    },
+    async getTopics(context) {
+      const { data } = await SCMPAPI.get('/topics');
+      console.log(data);
+      context.commit('setTopics', data);
+    },
+    async searchNews(context, params) {
+      const { data } = await SCMPAPI.get('/search', { params });
+      context.commit('setNews', data);
     },
   },
 });

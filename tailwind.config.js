@@ -13,6 +13,7 @@ module.exports = {
       success: '#4CAF50',
       warning: '#FB8C00',
       white: '#FFFF',
+      gray: '#6b7280',
     },
     extend: {
       fontFamily: {
