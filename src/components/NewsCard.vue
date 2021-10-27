@@ -40,29 +40,45 @@ export default defineComponent({
 </script>
 
 <template>
-  <div
-    class="
-      w-full
-      bg-white
-      rounded-lg
-      sahdow-lg
-      overflow-hidden
-      flex flex-col
-      md:flex-row
-      border-gray
-      divide-y
-    "
-  >
-    <div class="w-full md:w-3/5 text-left p-4 md:p-4 space-y-2">
-      <p class="text-base text-gray font-bold">
-        {{ news.topics.join(', ') }}
-      </p>
-      <p class="text-l font-bold">{{ news.text }}</p>
-      <p class="text-sm text-gray font-normal">{{ toDate(news.timeStamp) }}</p>
+  <div class="grid grid-cols-3 grid-rows-1 gap-6">
+    <div
+      class="
+        w-full
+        bg-white
+        rounded-lg
+        sahdow-lg
+        overflow-hidden
+        flex flex-col
+        md:flex-row
+        border-gray
+        col-span-2
+      "
+    >
+      <div class="w-full col-span-2 text-left p-4 md:p-4 space-y-2">
+        <div class="block lg:hidden">
+          <p class="text-base text-gray font-bold">
+            {{ news.topics.join(', ') }}
+          </p>
+          <p class="text-l font-bold">{{ news.text }}</p>
+          <p class="text-sm text-gray font-normal">
+            {{ toDate(news.timeStamp) }}
+          </p>
+        </div>
+        <div class="hidden lg:block">
+          <p class="text-l font-bold">
+            <span class="text-base text-gray font-bold">
+              {{ news.topics.join(', ') }} |
+            </span>
+            {{ news.text }}
+          </p>
+          <p class="text-sm text-gray font-normal">
+            {{ toDate(news.timeStamp) }}
+          </p>
+        </div>
+      </div>
     </div>
-
-    <div class="float-right mt-3">
-      <img class="object-center object-cover" :src="news.image" />
+    <div class="col-span-1 row-span-3 m-6">
+      <img class="justify-self-center" :src="news.image" />
     </div>
   </div>
 </template>

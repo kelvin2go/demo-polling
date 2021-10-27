@@ -133,7 +133,12 @@ export default defineComponent({
     </div>
     <div class="flex justify-center">
       <div class="justify-center max-w-screen-xl px-4 py-12 sm:px-6">
-        <div v-for="news in foundNews">
+        <h1 class="text-8xl border-b-2 border-gray p-2 mb-6">{{ form.q }}</h1>
+        <div class="w-full">
+          <p>Search Results</p>
+          <p class="text-right">Topics: {{ form.t }}</p>
+        </div>
+        <div v-for="news in foundNews" class="w-full">
           <NewsCard :news="news" class="border border-gray m-1" />
         </div>
       </div>
