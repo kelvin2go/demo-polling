@@ -3,6 +3,12 @@
 Based on
 [Vite, Vue, Tailwind CSS](https://github.com/web2033/vite-vue3-tailwind-starter)
 
+Polling
+location: `/`
+
+Search news
+location: `/searh/:keyword/:topic`
+
 npm:
 
 ```sh
