@@ -21,6 +21,12 @@ export default createStore({
       state.count++;
     },
     setPolls(state, polls) {
+      const storedpolls = JSON.parse(localStorage.getItem('storedpolls'));
+      console.log('STORED', storedpolls);
+      if (storedpolls) {
+        state.polls = storedpolls;
+        return;
+      }
       polls.forEach((element, index) => {
         polls[index].answer.options = element.answer.options.map((x) => {
           return {
@@ -49,6 +55,7 @@ export default createStore({
         poll.answer.options[optionIndex].count + 1;
       console.log(poll);
       state.polls[votedPollIndex] = poll;
+      localStorage.setItem('storedpolls', JSON.stringify(state.polls));
     },
     setTopics(state, result) {
       state.topics = result;

@@ -8,6 +8,13 @@ export default defineComponent({
   name: 'PollList',
   setup() {
     const store = useStore();
+    const getPolls = () => {
+      store.dispatch('getPolls');
+    };
+    const addPolls = () => {
+      store.commit('');
+    };
+    getPolls();
     console.log(store.state);
     const polls = computed(() => {
       const [head, ...rest] = store.state.polls;
@@ -16,13 +23,6 @@ export default defineComponent({
         rest: rest || {},
       };
     });
-    const getPolls = () => {
-      store.dispatch('getPolls');
-    };
-    const addPolls = () => {
-      store.commit('');
-    };
-    getPolls();
 
     return {
       polls,
@@ -43,7 +43,7 @@ export default defineComponent({
       <div class="justify-center max-w-screen-xl px-4 py-12 sm:px-6">
         <PollHero
           :poll="polls.head"
-          @click="$router.push({ path: 'poll', params: { id: poll.id } })"
+          @click="$router.push({ path: `/poll/${polls.head.id}` })"
         />
       </div>
     </div>
@@ -54,7 +54,7 @@ export default defineComponent({
             v-for="poll in polls.rest"
             :poll="poll"
             class="col-span-1"
-            @click="$router.push({ path: 'poll', params: { id: poll.id } })"
+            @click="$router.push({ path: `/poll/${poll.id}` })"
           />
         </div>
       </div>

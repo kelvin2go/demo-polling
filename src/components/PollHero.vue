@@ -79,6 +79,9 @@ export default defineComponent({
           >
             {{ option.label }}
           </button>
+          <span v-if="option.hasOwnProperty('count')">
+            {{ option.count }} voted
+          </span>
         </div>
       </div>
 
@@ -92,6 +95,10 @@ export default defineComponent({
               : 0
           "
         />
+      </div>
+
+      <div class="flex-initial text-lg text-medium md:w-8/12 sm: w-full">
+        Total Votes: {{ totalVote }}
       </div>
     </div>
   </div>
